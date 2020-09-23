@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: lendemall-com-tls
+spec:
+  secretName: lendemall-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: lendemall.com
+  dnsNames:
+    - lendemall.com
+    - www.lendemall.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - lendemall.com
+          - www.lendemall.com
